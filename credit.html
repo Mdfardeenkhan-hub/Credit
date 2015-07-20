@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Credit Card Checker</title>
+    <h1 id="num">Number</h1>
+    <h1 id="tot"></h1>
+    <h1 id="type"></h1>
+</head>
+<body>
+    <script>
+        var calc=[];
+        var calc3=[];
+        var calc2;
+        var spl2;
+        var spl;
+        var total = 0;
+        var total2 = 0;
+        var card;
+        var number = prompt("What's the #");
+        document.getElementById("num").innerHTML = number;
+        
+        //extract every other digit from input and multiply by 2 and dump into an array
+        for (var i = 1, n = number.length; i<n ; i += 2){
+            calc.push(parseInt(number[i])*2);
+        };
+        //extract every odd digit and put into an array,
+        for (var i = 0, n = number.length; i<n; i+=2){
+            calc3.push(parseInt(number[i]));
+        };
+        //Card type
+        switch (calc3[0]){
+            case 3: card = "Amex";
+                    break;
+            case 4: card = "Visa";
+                    break;
+            case 5: card = "MasterCard";
+                    break;
+            default: card = "Not valid";
+       }
+        document.getElementById("type").innerHTML = card;
+            
+        // convert the arrays into strings, then back in an array to seperate each item
+        calc4 = calc3.join("");
+        spl2 = calc4.split("");
+        calc2 = calc.join("");
+        spl = calc2.split("");
+
+        // adder of first array
+        for (var i in spl){
+            total = parseInt(spl[i])+total;
+        };
+        //adder of 2nd array
+        for (var i in spl2){
+            total2 = parseInt(spl2[i])+total2;
+        };
+        
+        bigTotal = total + total2;
+        document.getElementById("tot").innerHTML = bigTotal;
+        
+        //validate if card is correct
+        if (bigTotal%5===0){
+            alert("this card is legit");
+        } else {
+            alert ("this card is a fraud!");      
+        };
+        
+    
+        
+    </script>
+</body>
+</html>
